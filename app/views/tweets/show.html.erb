@@ -1,0 +1,13 @@
+<h1><%= @tweet.title %></h1>
+<div>
+  <% if @tweet.image.attached? %>
+    <%= image_tag @tweet.image, size: '250x200' %>
+  <% else %>
+    <%= image_tag 'https://via.placeholder.com/250x200', alt: 'No photo available' %>
+  <% end %>
+</div>
+<%= markdown(@tweet.html) %>
+<%= markdown(@tweet.css) %>
+<%= markdown(@tweet.js) %>
+<%= link_to '編集する', edit_tweet_path(@tweet), class: "nav-link" %> |
+<%= link_to '戻る', tweets_path, class: "nav-link" %>

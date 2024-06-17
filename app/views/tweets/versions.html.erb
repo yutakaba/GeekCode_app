@@ -1,0 +1,11 @@
+<h1>Tweet Versions</h1>
+<%= link_to 'Back to Tweet', @tweet %>
+
+<ul>
+  <% @versions.each do |version| %>
+    <li>
+      Version <%= version.index %> - <%= version.created_at %> - 
+      <%= link_to 'Revert', revert_tweet_path(@tweet, version_id: version.id), method: :post %>
+    </li>
+  <% end %>
+</ul>

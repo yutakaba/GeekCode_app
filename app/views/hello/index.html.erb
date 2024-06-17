@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Share Platform</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'typing_effect', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="left-links">
+                <%= link_to "コードを投稿する", new_tweet_path, class: "nav-link-code" %>
+            </div>
+            <h1>GeekCode</h1>
+            <nav>
+                <%= link_to "ログイン", tweets_path, class: "nav-link" %>
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+            </nav>
+        </header>
+        <main>
+            <p>このプラットフォームでは、HTML、CSS、JSのコードを共有することができます。</p>
+            <div class="code-section">
+                <div class="code-label">HTML</div>
+                <pre id="html-typing" class="code-container"><code class="language-html"></code></pre>
+            </div>
+            <div class="code-section">
+                <div class="code-label">CSS</div>
+                <pre id="css-typing" class="code-container"><code class="language-css"></code></pre>
+            </div>
+            <div class="code-section">
+                <div class="code-label">JavaScript</div>
+                <pre id="js-typing" class="code-container"><code class="language-js"></code></pre>
+            </div>
+        </main>
+        <footer>
+            <p>© 2024 Code Share Platform. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setupTyped();
+        });
+
+        function setupTyped() {
+            new Typed('#html-typing code', {
+                strings: ['&lt;div class="container"&gt;\n    &lt;h1&gt;Hello, world!&lt;/h1&gt;\n    &lt;p&gt;Welcome to GeekCode&lt;/p&gt;\n    &lt;a href="#"&gt;Learn more&lt;/a&gt;\n&lt;/div&gt;'],
+                typeSpeed: 30,
+                onComplete: () => Prism.highlightAll() // タイピングが完了したら色付けを適用
+            });
+
+            new Typed('#css-typing code', {
+                strings: ['.container {\n    width: 80%;\n    margin: auto;\n    padding: 20px;\n    background-color: #f0f0f0;\n    border-radius: 8px;\n}\n\nh1 {\n    color: #333;\n    text-align: center;\n}\n\np {\n    font-size: 16px;\n    line-height: 1.5;\n}'],
+                typeSpeed: 30,
+                onComplete: () => Prism.highlightAll() // タイピングが完了したら色付けを適用
+            });
+
+            new Typed('#js-typing code', {
+                strings: ['document.addEventListener("DOMContentLoaded", function() {\n    console.log("Hello, world!");\n    const container = document.querySelector(".container");\n    container.style.backgroundColor = "#e0e0e0";\n});'],
+                typeSpeed: 30,
+                onComplete: () => Prism.highlightAll() // タイピングが完了したら色付けを適用
+            });
+        }
+    </script>
+</body>
+</html>
