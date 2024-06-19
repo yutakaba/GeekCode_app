@@ -25,10 +25,10 @@
     "webpack-dev-server": "3"
   },
   "scripts": {
-    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack"
+    "build": "webpack"
   },
   "engines": {
-    "node": "16.x",
+    "node": "14.x",
     "yarn": "1.x"
   }
 }
