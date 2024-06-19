@@ -27,14 +27,6 @@ module.exports = function(api) {
   ];
 
   if (api.env('test')) {
-    presets.push([
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 'current'
-        }
-      }
-    ]);
     plugins.push('babel-plugin-dynamic-import-node');
   }
 
@@ -43,3 +35,4 @@ module.exports = function(api) {
     plugins
   };
 };
+
