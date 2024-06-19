@@ -1,5 +1,7 @@
 module.exports = function(api) {
-  api.cache(true); // ここでキャッシュを設定
+  api.cache(false); // 一旦キャッシュを無効にしてから
+
+  api.cache(true); // 再度キャッシュを有効にする
 
   const presets = [
     [
