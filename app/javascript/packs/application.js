@@ -3,34 +3,36 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import * as ActiveStorage from "@rails/activestorage";
+import "channels";
 import EasyMDE from "easymde";
 import "easymde/dist/easymde.min.css";
+import Vue from "vue";
+import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-    const textarea = document.getElementById("tweet_body");
-    if (textarea) {
-      new EasyMDE({ element: textarea });
-    }
+  const textarea = document.getElementById("tweet_body");
+  if (textarea) {
+    new EasyMDE({ element: textarea });
+  }
 });
-  
+
 document.addEventListener('DOMContentLoaded', function () {
   const menuButton = document.querySelector('.navbar-toggler');
   const sidebar = document.querySelector('#sidebar');
 
-  menuButton.addEventListener('click', function () {
-    sidebar.classList.toggle('open');
-  });
-});
+  if (menuButton) {
+    menuButton.addEventListener('click', function () {
+      sidebar.classList.toggle('open');
+    });
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.querySelector(".submit-button");
   const form = document.querySelector("form");
 
@@ -60,5 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
       message.style.display = "none";
       window.location.href = "/tweets"; // 投稿後にindexページに遷移
     }, 2000); // 2秒後にメッセージを非表示にして遷移
+  }
+});
+
+// Vue.jsの初期化コード
+document.addEventListener("DOMContentLoaded", () => {
+  const appElement = document.getElementById("app");
+  if (appElement) {
+    new Vue({
+      render: h => h(HelloComponent),
+    }).$mount(appElement);
   }
 });
