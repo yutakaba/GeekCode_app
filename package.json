@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "engines": {
     "node": "20.x",
-    "yarn": ">=1 <4"
+    "yarn": "1.x"
   },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
