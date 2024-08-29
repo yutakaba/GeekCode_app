@@ -35,6 +35,6 @@
     "webpack-dev-server": "3"
   },
   "scripts": {
-    "start": "bundle exec rails server -p $PORT -e $RAILS_ENV"
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' bundle exec rails server -p $PORT -e $RAILS_ENV"
   }
 }
