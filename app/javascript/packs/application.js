@@ -6,7 +6,6 @@
 import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
-import "channels";
 import EasyMDE from "easymde";
 import "easymde/dist/easymde.min.css";
 import Vue from "vue";
