@@ -1,6 +1,7 @@
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
+  mode: 'production', // ここを追加します
   entry: './app/javascript/packs/application.js',
   output: {
     filename: 'bundle.js',
