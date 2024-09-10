@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import EasyMDE from "easymde";
 import "easymde/dist/easymde.min.css";
-import Vue from "vue";
+import { createApp } from 'vue'; // Vue 3の場合
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
 
 Rails.start();
@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", () => {
   const appElement = document.getElementById("app");
   if (appElement) {
-    new Vue({
-      render: h => h(HelloComponent),
-    }).$mount(appElement);
+    createApp(HelloComponent).mount(appElement); // Vue 3の初期化コード
   }
 });

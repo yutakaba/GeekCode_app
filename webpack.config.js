@@ -2,6 +2,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   entry: './app/javascript/packs/application.js',
   output: {
     filename: 'bundle.js',
@@ -31,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       'hashFunction': 'sha256'
     })
   ],
