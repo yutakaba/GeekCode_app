@@ -16,7 +16,8 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // ここで monaco-editor を除外する
+        exclude: /node_modules\/(monaco-editor)/, // 追加: monaco-editor を babel-loader の処理から除外
         use: {
           loader: 'babel-loader',
         },
