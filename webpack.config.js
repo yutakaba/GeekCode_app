@@ -16,8 +16,8 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // ここで monaco-editor を除外する
-        exclude: /node_modules\/(monaco-editor)/, // 追加: monaco-editor を babel-loader の処理から除外
+        // monaco-editor を babel-loader の処理から除外
+        exclude: /node_modules\/(monaco-editor)/,
         use: {
           loader: 'babel-loader',
         },
@@ -25,9 +25,21 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader',
-        ],
+          'style-loader', // CSS を DOM に注入する
+          'css-loader'   // CSS を JavaScript に変換する
+        ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        use: [
+          {
+            loader: 'file-loader', // ファイルを出力フォルダーにコピーする
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
       },
     ],
   },
