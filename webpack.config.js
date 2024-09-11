@@ -16,11 +16,13 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // monaco-editor を babel-loader の処理から除外
-        exclude: /node_modules\/(monaco-editor)/,
+        exclude: /node_modules\/monaco-editor/, // よりシンプルな記述に変更
         use: {
           loader: 'babel-loader',
-        },
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.css$/,
