@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules\/monaco-editor/, // よりシンプルな記述に変更
+        exclude: /node_modules\/(?!monaco-editor)/,
         use: {
           loader: 'babel-loader',
           options: {
