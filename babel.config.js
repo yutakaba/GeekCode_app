@@ -18,7 +18,7 @@ module.exports = function(api) {
     '@babel/plugin-transform-runtime',
     '@babel/plugin-transform-regenerator',
     '@babel/plugin-transform-for-of',
-    '@babel/plugin-proposal-private-property-in-object',
+    "@babel/plugin-transform-private-property-in-object"
   ];
 
   return {
