@@ -27,8 +27,8 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader', // CSS を DOM に注入する
-          'css-loader'   // CSS を JavaScript に変換する
+          'style-loader', // CSSをDOMに注入する
+          'css-loader'   // CSSをJavaScriptに変換する
         ]
       },
       {
@@ -56,5 +56,10 @@ module.exports = {
       vue: 'vue/dist/vue.esm-bundler.js',
     },
     extensions: ['.js', '.vue'],
+  },
+  node: {
+    __dirname: false,
+    __filename: false,
+    global: true // 必要に応じて変更
   },
 };
