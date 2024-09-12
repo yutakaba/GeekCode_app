@@ -56,6 +56,12 @@ module.exports = {
       vue: 'vue/dist/vue.esm-bundler.js',
     },
     extensions: ['.js', '.vue'],
+    fallback: {
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false
+    }
   },
   node: {
     __dirname: false,
