@@ -27,15 +27,15 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader', // CSSをDOMに注入する
-          'css-loader'   // CSSをJavaScriptに変換する
+          'style-loader',
+          'css-loader'
         ]
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         use: [
           {
-            loader: 'file-loader', // ファイルを出力フォルダーにコピーする
+            loader: 'file-loader',
             options: {
               name: '[name].[ext]',
               outputPath: 'fonts/'
@@ -60,6 +60,6 @@ module.exports = {
   node: {
     __dirname: false,
     __filename: false,
-    global: true // 必要に応じて変更
-  },
+    global: true
+  }
 };
