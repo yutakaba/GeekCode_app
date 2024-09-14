@@ -1,8 +1,8 @@
 const { VueLoaderPlugin } = require('vue-loader');
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: process.env.NODE_ENV || 'development',
   entry: './app/javascript/packs/application.js',
   output: {
     filename: 'bundle.js',
@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules\/(?!monaco-editor)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -27,7 +27,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
@@ -47,13 +47,14 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.ProvidePlugin({
-      'hashFunction': 'sha256'
-    })
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }),
   ],
   resolve: {
     alias: {
       vue: 'vue/dist/vue.esm-bundler.js',
+      'vs': require.resolve('monaco-editor/min/vs')
     },
     extensions: ['.js', '.vue']
   }

@@ -76,7 +76,8 @@ module.exports = function(api) {
         {
           async: false
         }
-      ]
+      ],
+      '@babel/plugin-transform-for-of' 
     ].filter(Boolean)
   }
 }
