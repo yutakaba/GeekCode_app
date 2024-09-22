@@ -160,6 +160,8 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
+    nokogiri (1.16.6-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.16.6-x64-mingw32)
       racc (~> 1.4)
     nokogiri (1.16.6-x86_64-linux)
@@ -169,6 +171,7 @@ GEM
       activerecord (>= 6.1)
       request_store (~> 1.4)
     pg (1.5.6)
+    pg (1.5.6-x64-mingw-ucrt)
     pg (1.5.6-x64-mingw32)
     public_suffix (5.1.0)
     puma (5.6.8)
@@ -249,6 +252,7 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.3-x64-mingw-ucrt)
     sqlite3 (1.7.3-x64-mingw32)
     sqlite3 (1.7.3-x86_64-linux)
     ssrf_filter (1.0.8)
@@ -289,6 +293,7 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
+  x64-mingw-ucrt
   x64-mingw32
   x86_64-linux
 
@@ -320,7 +325,7 @@ DEPENDENCIES
   webpacker (= 5.4.3)
 
 RUBY VERSION
-   ruby 3.0.5p211
+   ruby 3.1.6p260
 
 BUNDLED WITH
-   2.2.33
+   2.5.19
