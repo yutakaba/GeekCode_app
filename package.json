@@ -30,7 +30,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
     "prod": "webpack --mode production",
-    "heroku-postbuild": "npm run prod"
+    "heroku-postbuild": "yarn build"
   },
   "devDependencies": {
     "@babel/plugin-transform-class-properties": "^7.25.4",
