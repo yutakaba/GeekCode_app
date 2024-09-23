@@ -16,6 +16,10 @@ environment.plugins.prepend(
   })
 );
 
+environment.config.resolve.alias = {
+  'vue$': 'vue/dist/vue.esm.js'
+};
+
 // 不要なNode.js関連の設定を削除
 environment.config.delete('node.dgram');
 environment.config.delete('node.fs');
