@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "engines": {
-    "node": "16.x",
-    "npm": "6.x"
+    "node": "16.20.2"
   },
   "dependencies": {
     "@babel/core": "^7.24.7",
