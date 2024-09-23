@@ -12,7 +12,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
-    "babel-loader": "^8.3.0",
+    "babel-loader": "^9.2.1",
     "css-loader": "^3.6.0",
     "easymde": "^2.18.0",
     "mini-css-extract-plugin": "^0.8.0",
