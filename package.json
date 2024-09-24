@@ -3,16 +3,16 @@
   "private": true,
   "version": "0.1.0",
   "engines": {
-    "node": "16.x"
+    "node": "16.20.2"
   },
   "dependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
+    "@babel/core": "7.22.9",
+    "@babel/preset-env": "7.22.9",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "8.3.0",
     "css-loader": "^3.6.0",
     "easymde": "^2.18.0",
     "mini-css-extract-plugin": "^0.8.0",
