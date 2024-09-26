@@ -16,14 +16,14 @@ environment.config.set('resolve.alias', {
 });
 
 // 不要な Node.js 関連の設定を無視
-environment.configure((webpackConfig) => {
-  webpackConfig.node = {
+environment.config.merge({
+  node: {
     dgram: 'empty',
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
-  };
+  },
 });
 
 module.exports = environment;
