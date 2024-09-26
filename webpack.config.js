@@ -55,7 +55,7 @@ module.exports = {
     alias: {
       vue: 'vue/dist/vue.esm-bundler.js',
       'vs': require.resolve('monaco-editor/esm/vs/editor/editor.main.js')
-    },
+    },    
     extensions: ['.js', '.vue']
   }
 };
