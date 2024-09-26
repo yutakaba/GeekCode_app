@@ -29,8 +29,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
-    "prod": "webpack --mode production",
-    "heroku-postbuild": "yarn build"
+    "prod": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/plugin-transform-class-properties": "^7.25.4",
