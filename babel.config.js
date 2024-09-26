@@ -91,7 +91,7 @@ module.exports = function (api) {
       '@babel/plugin-proposal-logical-assignment-operators',
       '@babel/plugin-proposal-numeric-separator',
       '@babel/plugin-proposal-throw-expressions',
-      '@babel/plugin-proposal-unicode-property-regex',
+      '@babel/plugin-proposal-unicode-property-regex'
     ].filter(Boolean),
   }
 }
