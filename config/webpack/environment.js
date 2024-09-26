@@ -5,6 +5,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const vue = require('./loaders/vue');
 const babelLoader = require('./loaders/babel');
 
+babelLoader.exclude = [/node_modules\/monaco-editor/]
+
 // Vue Loader の設定
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin());
 environment.loaders.prepend('vue', vue);
