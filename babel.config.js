@@ -1,4 +1,6 @@
-module.exports = function(api) {
+// babel.config.js
+
+module.exports = function (api) {
   var validEnv = ['development', 'test', 'production']
   var currentEnv = api.env()
   var isDevelopmentEnv = api.env('development')
@@ -21,9 +23,11 @@ module.exports = function(api) {
         '@babel/preset-env',
         {
           targets: {
-            node: 'current'
-          }
-        }
+            node: 'current',
+          },
+          // 新しい構文をサポート
+          shippedProposals: true,
+        },
       ],
       (isProductionEnv || isDevelopmentEnv) && [
         '@babel/preset-env',
@@ -32,52 +36,62 @@ module.exports = function(api) {
           useBuiltIns: 'entry',
           corejs: 3,
           modules: false,
-          exclude: ['transform-typeof-symbol']
-        }
-      ]
+          exclude: ['transform-typeof-symbol'],
+          // 新しい構文をサポート
+          shippedProposals: true,
+        },
+      ],
     ].filter(Boolean),
     plugins: [
       'babel-plugin-macros',
       '@babel/plugin-syntax-dynamic-import',
       isTestEnv && 'babel-plugin-dynamic-import-node',
       '@babel/plugin-transform-destructuring',
+      // プラグイン名を修正
       [
-        '@babel/plugin-transform-class-properties',
+        '@babel/plugin-proposal-class-properties',
         {
-          loose: true
-        }
+          loose: true,
+        },
       ],
       [
-        '@babel/plugin-transform-object-rest-spread',
+        '@babel/plugin-proposal-object-rest-spread',
         {
-          useBuiltIns: true
-        }
+          useBuiltIns: true,
+        },
       ],
       [
         '@babel/plugin-transform-private-methods',
         {
-          loose: true
-        }
+          loose: true,
+        },
       ],
       [
         '@babel/plugin-transform-private-property-in-object',
         {
-          loose: true
-        }
+          loose: true,
+        },
       ],
       [
         '@babel/plugin-transform-runtime',
         {
-          helpers: false
-        }
+          helpers: false,
+        },
       ],
       [
         '@babel/plugin-transform-regenerator',
         {
-          async: false
-        }
+          async: false,
+        },
       ],
-      '@babel/plugin-transform-for-of' 
-    ].filter(Boolean)
+      '@babel/plugin-transform-for-of',
+      // 必要な新しいプラグインを追加
+      '@babel/plugin-proposal-nullish-coalescing-operator',
+      '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-proposal-logical-assignment-operators',
+      '@babel/plugin-proposal-numeric-separator',
+      '@babel/plugin-proposal-throw-expressions',
+      '@babel/plugin-proposal-unicode-property-regex',
+    ].filter(Boolean),
   }
 }
