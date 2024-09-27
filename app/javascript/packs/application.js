@@ -10,6 +10,8 @@ import EasyMDE from "easymde";
 import "easymde/dist/easymde.min.css";
 import Vue from 'vue'; // Vue.js 2.x のインポート
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
+import 'simplemde/dist/simplemde.min.css';
+import SimpleMDE from 'simplemde';
 
 Rails.start();
 Turbolinks.start();
@@ -71,5 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
     new Vue({
       render: h => h(HelloComponent)
     }).$mount(appElement);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const textarea = document.getElementById("tweet_html");
+  if (textarea) {
+    new SimpleMDE({ element: textarea });
   }
 });
