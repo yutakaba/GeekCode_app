@@ -16,9 +16,24 @@ Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  const textarea = document.getElementById("tweet_body");
-  if (textarea) {
-    new EasyMDE({ element: textarea });
+  const htmltextarea = document.getElementById("tweet_html");
+  if (htmltextarea) {
+    new EasyMDE({ element: htmltextarea });
+  }
+
+  const csstextarea = document.getElementById("tweet_css");
+  if (csstextarea) {
+    new EasyMDE({ element: csstextarea });
+  }
+
+  const jstextarea = document.getElementById("tweet_js");
+  if (jstextarea) {
+    new EasyMDE({ element: jstextarea });
+  }
+
+  const urltextarea = document.getElementById("tweet_url");
+  if (urltextarea) {
+    new EasyMDE({ element: urltextarea });
   }
 });
 
