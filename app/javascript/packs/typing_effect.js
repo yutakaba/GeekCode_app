@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbolinks:load", function() {
+    const typingElement = document.getElementById('typing');
+    if (!typingElement) {
+        console.error('Element with ID "typing" not found.');
+        return;
+    }
+
     const texts = ["npm install -g create-react-app", "create-react-app my-app", "cd my-app", "npm start"];
     let count = 0;
     let index = 0;
     let currentText = '';
     let letter = '';
-    const typingElement = document.getElementById('typing');
-
-    if (!typingElement) {
-        console.error('Element with ID "typing" not found.');
-        return;  // 要素が見つからない場合、ここで処理を終了
-    }
 
     (function type() {
         if (count === texts.length) {
