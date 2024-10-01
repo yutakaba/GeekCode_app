@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let index = 0;
     let currentText = '';
     let letter = '';
+    const typingElement = document.getElementById('typing');
+
+    if (!typingElement) {
+        console.error('Element with ID "typing" not found.');
+        return;  // 要素が見つからない場合、ここで処理を終了
+    }
 
     (function type() {
         if (count === texts.length) {
@@ -12,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         currentText = texts[count];
         letter = currentText.slice(0, ++index);
 
-        document.getElementById('typing').textContent = letter;
+        typingElement.textContent = letter;
         if (letter.length === currentText.length) {
             count++;
             index = 0;
