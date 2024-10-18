@@ -14,6 +14,12 @@
     </div>
   <% end %>
 
+  <!-- タイトル入力フィールドを追加 -->
+  <div class="field">
+    <%= form.label :title, "タイトル", for: "tweet_title", class: "form-label" %>
+    <%= form.text_field :title, id: "tweet_title", class: "form-input" %>
+  </div>
+
   <% ['html', 'css', 'js', 'url'].each do |field| %>
     <div class="field">
       <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
@@ -21,6 +27,12 @@
       <div id="preview_#{field}" class="markdown-preview"></div>
     </div>
   <% end %>
+
+  <!-- 画像投稿フィールド -->
+  <div class="field">
+    <%= form.label :image, "画像アップロード", for: "tweet_image", class: "form-label" %>
+    <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
+  </div>
 
   <div class="actions">
     <%= form.submit "投稿する", class: "submit-button" %>
