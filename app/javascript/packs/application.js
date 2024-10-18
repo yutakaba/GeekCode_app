@@ -6,8 +6,7 @@
 import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
-import EasyMDE from "easymde";
-import "easymde/dist/easymde.min.css";
+import showdown from 'showdown';
 import Vue from 'vue'; // Vue.js 2.x のインポート
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
 
@@ -15,26 +14,23 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-document.addEventListener("turbolinks:load", () => {
-  const htmltextarea = document.getElementById("tweet_html");
-  if (htmltextarea) {
-    new EasyMDE({ element: htmltextarea });
-  }
+document.addEventListener('turbolinks:load', () => {
+  const markdownEditors = document.querySelectorAll('.markdown-editor');
 
-  const csstextarea = document.getElementById("tweet_css");
-  if (csstextarea) {
-    new EasyMDE({ element: csstextarea });
-  }
+  markdownEditors.forEach(editor => {
+    const field = editor.id.split('_')[1];
+    const preview = document.querySelector(`#preview_${field}`);
+    const converter = new showdown.Converter();
 
-  const jstextarea = document.getElementById("tweet_js");
-  if (jstextarea) {
-    new EasyMDE({ element: jstextarea });
-  }
+    editor.addEventListener('input', () => {
+      const html = converter.makeHtml(editor.value);
+      preview.innerHTML = html;
+    });
 
-  const urltextarea = document.getElementById("tweet_url");
-  if (urltextarea) {
-    new EasyMDE({ element: urltextarea });
-  }
+    // 初期表示時にプレビューを更新
+    const initialHtml = converter.makeHtml(editor.value);
+    preview.innerHTML = initialHtml;
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -26,20 +26,3 @@
     <%= form.submit "投稿する", class: "submit-button" %>
   </div>
 <% end %>
-
-<script>
-  document.addEventListener('turbolinks:load', () => {
-    const editors = document.querySelectorAll('.markdown-editor');
-    const md = new MarkdownIt();
-
-    editors.forEach(editor => {
-      const field = editor.id.split('_')[1];
-      const preview = document.querySelector(`#preview_${field}`);
-
-      editor.addEventListener('input', () => {
-        const html = md.render(editor.value);
-        preview.innerHTML = html;
-      });
-    });
-  });
-</script>
