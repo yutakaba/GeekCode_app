@@ -7,6 +7,8 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import showdown from 'showdown';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css'; 
 import Vue from 'vue'; // Vue.js 2.x のインポート
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
 
@@ -41,6 +43,41 @@ document.addEventListener('turbolinks:load', () => {
     // 初期表示時にプレビューを更新
     const initialHtml = converter.makeHtml(editor.value);
     preview.innerHTML = initialHtml;
+  });
+});
+
+
+document.addEventListener('turbolinks:load', () => {
+  const markdownEditors = document.querySelectorAll('.markdown-editor');
+
+  markdownEditors.forEach(editor => {
+    const field = editor.id.split('_')[1];
+    const preview = document.querySelector(`#preview_${field}`);
+    const converter = new showdown.Converter({
+      tables: true,
+      simplifiedAutoLink: true,
+      strikethrough: true,
+      tasklists: true
+    });
+
+    editor.addEventListener('input', () => {
+      const html = converter.makeHtml(editor.value);
+      preview.innerHTML = html;
+
+      // コードブロックのシンタックスハイライトを適用
+      preview.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+
+    // 初期表示時にプレビューを更新
+    const initialHtml = converter.makeHtml(editor.value);
+    preview.innerHTML = initialHtml;
+
+    // コードブロックのシンタックスハイライトを適用
+    preview.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
   });
 });
 
