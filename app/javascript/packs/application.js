@@ -6,8 +6,7 @@
 import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
-import EasyMDE from "easymde";
-import "easymde/dist/easymde.min.css";
+import MarkdownIt from 'markdown-it';
 import Vue from 'vue'; // Vue.js 2.x のインポート
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
 
@@ -15,26 +14,15 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-document.addEventListener("turbolinks:load", () => {
-  const htmltextarea = document.getElementById("tweet_html");
-  if (htmltextarea) {
-    new EasyMDE({ element: htmltextarea });
-  }
+document.addEventListener('turbolinks:load', () => {
+  const markdownContainers = document.querySelectorAll('.markdown');
+  const md = new MarkdownIt();
 
-  const csstextarea = document.getElementById("tweet_css");
-  if (csstextarea) {
-    new EasyMDE({ element: csstextarea });
-  }
-
-  const jstextarea = document.getElementById("tweet_js");
-  if (jstextarea) {
-    new EasyMDE({ element: jstextarea });
-  }
-
-  const urltextarea = document.getElementById("tweet_url");
-  if (urltextarea) {
-    new EasyMDE({ element: urltextarea });
-  }
+  markdownContainers.forEach(container => {
+    const rawContent = container.textContent;
+    const html = md.render(rawContent);
+    container.innerHTML = html;
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function () {

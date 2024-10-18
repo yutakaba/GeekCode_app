@@ -14,49 +14,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :body, "タイトル", for: "tweet_body" %>
-    <%= form.text_field :title, id: "tweet_body" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image, "Image", for: "tweet_image" %>
-    <%= form.file_field :image, id: "tweet_image" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :html, "HTML", for: "tweet_html", class: "form-label" %>
-    <%= form.text_area :html, id: "tweet_html", class: "form-input", rows: 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :css, "CSS", for: "tweet_css", class: "form-label" %>
-    <%= form.text_area :css, id: "tweet_css", class: "form-input", rows: 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :js, "JavaScript", for: "tweet_js", class: "form-label" %>
-    <%= form.text_area :js, id: "tweet_js", class: "form-input", rows: 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :url, "URL", for: "tweet_url", class: "form-label" %>
-    <%= form.text_area :url, id: "tweet_url", class: "form-input", rows: 10 %>
-  </div>
-
-  <div class='form-group'>
-    <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-      <div class='form-check'>
-        <% tag_id = "tweet_tag_ids_#{tag.object.id}" %>
-        <%= tag.check_box id: tag_id, class: 'form-check-input' %>
-        <%= tag.label class: 'form-check-label', for: tag_id do %>
-          <%= tag.text %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <% ['html', 'css', 'js', 'url'].each do |field| %>
+    <div class="field">
+      <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
+      <%= form.text_area field.to_sym, id: "tweet_#{field}", class: "form-input markdown-editor", rows: 10 %>
+      <div id="preview_#{field}" class="markdown-preview"></div>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit "投稿する", class: "submit-button" %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    const editors = document.querySelectorAll('.markdown-editor');
+    const md = new MarkdownIt();
+
+    editors.forEach(editor => {
+      const field = editor.id.split('_')[1];
+      const preview = document.querySelector(`#preview_${field}`);
+
+      editor.addEventListener('input', () => {
+        const html = md.render(editor.value);
+        preview.innerHTML = html;
+      });
+    });
+  });
+</script>
