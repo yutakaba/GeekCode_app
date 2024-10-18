@@ -15,7 +15,7 @@ module.exports = {
         loader: 'vue-loader',
       },
       {
-        test: /\.js$|\.mjs$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -43,11 +43,6 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto'
-      }
     ],
   },
   plugins: [
@@ -60,7 +55,7 @@ module.exports = {
     alias: {
       vue: 'vue/dist/vue.esm.js',
       'vs': require.resolve('monaco-editor/esm/vs/editor/editor.main.js')
-    },
-    extensions: ['.js', '.mjs', '.vue']
+    },    
+    extensions: ['.js', '.vue']
   }
 };
