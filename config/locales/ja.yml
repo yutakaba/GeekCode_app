@@ -1,0 +1,27 @@
+ja:
+  errors:
+    messages:
+      not_saved:
+        one: "1つのエラーがこの%{resource}の保存を阻んでいます:"
+        other: "%{count}つのエラーがこの%{resource}の保存を阻んでいます:"
+  activerecord:
+    models:
+      tweet: "投稿"
+    attributes:
+      tweet:
+        title: "タイトル"
+        html: "HTML"
+        css: "CSS"
+        js: "JavaScript"
+    errors:
+      models:
+        tweet:
+          attributes:
+            title:
+              blank: "を入力してください"
+            html:
+              blank: "を入力してください"
+            css:
+              blank: "を入力してください"
+            js:
+              blank: "を入力してください"
