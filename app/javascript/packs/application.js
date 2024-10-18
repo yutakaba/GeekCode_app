@@ -18,8 +18,19 @@ document.addEventListener('turbolinks:load', () => {
   const markdownEditors = document.querySelectorAll('.markdown-editor');
 
   markdownEditors.forEach(editor => {
-    const field = editor.id.split('_')[1];
+    // エディタIDからfield名を抽出
+    const field = editor.id.split('_')[1]; // 例: markdown_html -> html
     const preview = document.querySelector(`#preview_${field}`);
+    
+    console.log(`Editor ID: ${editor.id}`);  // ログ: markdown_html, markdown_css など
+    console.log(`Field: ${field}`);  // ログ: html, css など
+    console.log(`Preview Element: ${preview}`);  // プレビューエリアがnullの場合はエラー
+    
+    if (!preview) {
+      console.error(`プレビュー要素が見つかりません: #preview_${field}`);
+      return; // プレビュー要素が見つからない場合は処理を中断
+    }
+
     const converter = new showdown.Converter();
 
     editor.addEventListener('input', () => {
@@ -32,6 +43,8 @@ document.addEventListener('turbolinks:load', () => {
     preview.innerHTML = initialHtml;
   });
 });
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const menuButton = document.querySelector('.navbar-toggler');

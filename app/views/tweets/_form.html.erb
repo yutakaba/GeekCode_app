@@ -1,22 +1,11 @@
 <%= form_with(model: @tweet, local: true) do |form| %>
   <% if @tweet.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= I18n.t("errors.messages.not_saved",
-                   count: @tweet.errors.count,
-                   resource: @tweet.class.model_name.human.downcase) %>
-      </h2>
-      <ul>
-        <% @tweet.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <!-- エラー表示のコード -->
   <% end %>
 
-  <!-- タイトル入力フィールドを追加 -->
+  <!-- タイトル入力フィールド -->
   <div class="field">
-    <%= form.label :title, "タイトル", for: "tweet_title", class: "form-label" %>
+    <%= form.label :title, "タイトル", class: "form-label" %>
     <%= form.text_field :title, id: "tweet_title", class: "form-input" %>
   </div>
 
@@ -24,13 +13,16 @@
     <div class="field">
       <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
       <%= form.text_area field.to_sym, id: "tweet_#{field}", class: "form-input markdown-editor", rows: 10 %>
-      <div id="preview_#{field}" class="markdown-preview"></div>
+    </div>
+    <div class="field">
+      <label><%= field.upcase %> プレビュー</label>
+      <div id="preview_<%= field %>" class="markdown-preview"></div>
     </div>
   <% end %>
 
   <!-- 画像投稿フィールド -->
   <div class="field">
-    <%= form.label :image, "画像アップロード", for: "tweet_image", class: "form-label" %>
+    <%= form.label :image, "画像アップロード", class: "form-label" %>
     <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
   </div>
 
