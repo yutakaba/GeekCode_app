@@ -55,6 +55,42 @@
   form input[type="submit"] {
     cursor: pointer;
   }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .input-preview-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* 子要素の高さを揃える */
+    margin-bottom: 20px;
+  }
+  
+  .input-container, .preview-container {
+    flex: 1; /* 両方とも画面の半分の幅を使用 */
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* 余白調整 */
+  }
+  
+  .preview-container {
+    margin-right: 0; /* 最後の余白は不要 */
+  }
+  
+  .markdown-editor, .markdown-preview {
+    width: 100%; /* コンテナに合わせて幅を100%に */
+    flex: 1; /* Flexboxの子要素として高さを親に合わせる */
+    display: block;
+  }
+  
+  /* 不要なリサイズ機能の無効化 */
+  textarea {
+    resize: none;
+  }
+  
   
   /* タグリスト */
   form li {

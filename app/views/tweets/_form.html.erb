@@ -9,21 +9,24 @@
     <%= form.text_field :title, id: "tweet_title", class: "form-input" %>
   </div>
 
-  <% ['html', 'css', 'js', 'url'].each do |field| %>
-    <div class="field">
-      <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
-      <%= form.text_area field.to_sym, id: "tweet_#{field}", class: "form-input markdown-editor", rows: 10 %>
-    </div>
-    <div class="field">
-      <label><%= field.upcase %> プレビュー</label>
-      <div id="preview_<%= field %>" class="markdown-preview"></div>
-    </div>
-  <% end %>
+    <% ['html', 'css', 'js', 'url'].each do |field| %>
+      <div class="input-preview-container"> <!-- 入力とプレビューのペアのコンテナ -->
+        <div class="input-container"> <!-- 入力フィールド用のコンテナ -->
+          <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
+          <%= form.text_area field.to_sym, id: "tweet_#{field}", class: "form-input markdown-editor", rows: 10 %>
+        </div>
+        <div class="preview-container"> <!-- プレビュー表示用のコンテナ -->
+          <label><%= field.upcase %> プレビュー</label>
+          <div id="preview_<%= field %>" class="markdown-preview"></div>
+        </div>
+      </div>
+    <% end %>
 
-  <!-- 画像投稿フィールド -->
-  <div class="field">
-    <%= form.label :image, "画像アップロード", class: "form-label" %>
-    <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
+    <!-- 画像投稿フィールド -->
+    <div class="field">
+      <%= form.label :image, "画像アップロード", class: "form-label" %>
+      <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
+    </div>
   </div>
 
   <div class="actions">
