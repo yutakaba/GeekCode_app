@@ -273,7 +273,7 @@
     margin: 0 5px;
   }
   
-  .pagination a, .pagination span {
+  .pagination a{
     display: block;
     padding: 10px 15px;
     border: 1px solid #4caf50;
@@ -291,5 +291,24 @@
   .pagination .active span {
     background-color: #4caf50;
     color: #121212;
+  }
+  
+
+  .code-container {
+    position: relative;
+  }
+  
+  .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+  
+    &:hover {
+      color: #0056b3;
+    }
   }
   

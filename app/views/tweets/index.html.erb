@@ -30,25 +30,51 @@
             <%= image_tag 'https://via.placeholder.com/250x200?text=No+Image', alt: 'No Image' %>
           <% end %>
 
-          <!-- MarkdownをHTMLに変換して表示 -->
-          <div class="content-section">
-            <h3>HTML</h3>
-            <div><%= markdown(t.html) %></div>
+ <!-- HTMLセクション -->
+        <div class="content-section">
+          <h3>HTML</h3>
+          <div class="code-container">
+            <pre><code><%= markdown(t.html) %></code></pre>
+            <button class="copy-button">
+              <i class="fa-solid fa-copy"></i> コピー
+            </button>
           </div>
-          <div class="content-section">
-            <h3>CSS</h3>
-            <div><%= markdown(t.css) %></div>
+        </div>
+
+        <!-- CSSセクション -->
+        <div class="content-section">
+          <h3>CSS</h3>
+          <div class="code-container">
+            <pre><code><%= markdown(t.css) %></code></pre>
+            <button class="copy-button">
+              <i class="fa-solid fa-copy"></i> コピー
+            </button>
           </div>
-          <div class="content-section">
-            <h3>JavaScript</h3>
-            <div><%= markdown(t.js) %></div>
+        </div>
+
+         <!-- JavaScriptセクション -->
+        <div class="content-section">
+          <h3>JavaScript</h3>
+          <div class="code-container">
+            <pre><code><%= markdown(t.js) %></code></pre>
+            <button class="copy-button">
+              <i class="fa-solid fa-copy"></i> コピー
+            </button>
           </div>
-          <% if t.url.present? %>
-            <div class="content-section">
-              <h3>URL</h3>
-              <div><%= markdown(t.url) %></div>
+        </div>
+
+        <!-- URLセクション（存在する場合） -->
+        <% if t.url.present? %>
+          <div class="content-section">
+            <h3>URL</h3>
+            <div class="code-container">
+              <pre><code><%= markdown(t.url) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
             </div>
-          <% end %>
+          </div>
+        <% end %>
 
           <!-- いいねや閲覧数の表示、タグ、リンクなど -->
           <% if user_signed_in? %>
@@ -101,23 +127,49 @@
             <%= image_tag 'https://via.placeholder.com/250x200?text=No+Image', alt: 'No Image' %>
           <% end %>
 
-          <!-- MarkdownをHTMLに変換して表示 -->
+          <!-- HTMLセクション -->
           <div class="content-section">
             <h3>HTML</h3>
-            <div><%= markdown(t.html) %></div>
+            <div class="code-container">
+              <pre><code><%= markdown(t.html) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
+            </div>
           </div>
+
+          <!-- CSSセクション -->
           <div class="content-section">
             <h3>CSS</h3>
-            <div><%= markdown(t.css) %></div>
+            <div class="code-container">
+              <pre><code><%= markdown(t.css) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
+            </div>
           </div>
+
+          <!-- JavaScriptセクション -->
           <div class="content-section">
             <h3>JavaScript</h3>
-            <div><%= markdown(t.js) %></div>
+            <div class="code-container">
+              <pre><code><%= markdown(t.js) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
+            </div>
           </div>
+
+          <!-- URLセクション（存在する場合） -->
           <% if t.url.present? %>
             <div class="content-section">
               <h3>URL</h3>
-              <div><%= markdown(t.url) %></div>
+              <div class="code-container">
+                <pre><code><%= markdown(t.url) %></code></pre>
+                <button class="copy-button">
+                  <i class="fa-solid fa-copy"></i> コピー
+                </button>
+              </div>
             </div>
           <% end %>
 

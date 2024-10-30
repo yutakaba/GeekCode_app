@@ -11,6 +11,8 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css'; 
 import Vue from 'vue'; // Vue.js 2.x のインポート
 import HelloComponent from "../components/HelloComponent.vue"; // Vueコンポーネントのインポート
+import './copy_code';
+
 
 Rails.start();
 Turbolinks.start();
