@@ -30,51 +30,56 @@
             <%= image_tag 'https://via.placeholder.com/250x200?text=No+Image', alt: 'No Image' %>
           <% end %>
 
- <!-- HTMLセクション -->
-        <div class="content-section">
-          <h3>HTML</h3>
-          <div class="code-container">
-            <pre><code><%= markdown(t.html) %></code></pre>
-            <button class="copy-button">
-              <i class="fa-solid fa-copy"></i> コピー
-            </button>
+          <!-- タブメニュー -->
+          <div class="tab">
+            <button type="button" class="tablinks submit-button" data-code="HTML<%= t.id %>">HTML</button>
+            <button type="button" class="tablinks submit-button" data-code="CSS<%= t.id %>">CSS</button>
+            <button type="button" class="tablinks submit-button" data-code="JavaScript<%= t.id %>">JavaScript</button>
           </div>
-        </div>
 
-        <!-- CSSセクション -->
-        <div class="content-section">
-          <h3>CSS</h3>
-          <div class="code-container">
-            <pre><code><%= markdown(t.css) %></code></pre>
-            <button class="copy-button">
-              <i class="fa-solid fa-copy"></i> コピー
-            </button>
-          </div>
-        </div>
-
-         <!-- JavaScriptセクション -->
-        <div class="content-section">
-          <h3>JavaScript</h3>
-          <div class="code-container">
-            <pre><code><%= markdown(t.js) %></code></pre>
-            <button class="copy-button">
-              <i class="fa-solid fa-copy"></i> コピー
-            </button>
-          </div>
-        </div>
-
-        <!-- URLセクション（存在する場合） -->
-        <% if t.url.present? %>
-          <div class="content-section">
-            <h3>URL</h3>
+          <!-- タブコンテンツ -->
+          <div id="HTML<%= t.id %>" class="tabcontent">
+            <h3>HTML</h3>
             <div class="code-container">
-              <pre><code><%= markdown(t.url) %></code></pre>
+              <pre><code><%= markdown(t.html) %></code></pre>
               <button class="copy-button">
                 <i class="fa-solid fa-copy"></i> コピー
               </button>
             </div>
           </div>
-        <% end %>
+
+          <div id="CSS<%= t.id %>" class="tabcontent">
+            <h3>CSS</h3>
+            <div class="code-container">
+              <pre><code><%= markdown(t.css) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
+            </div>
+          </div>
+
+          <div id="JavaScript<%= t.id %>" class="tabcontent">
+            <h3>JavaScript</h3>
+            <div class="code-container">
+              <pre><code><%= markdown(t.js) %></code></pre>
+              <button class="copy-button">
+                <i class="fa-solid fa-copy"></i> コピー
+              </button>
+            </div>
+          </div>
+
+          <!-- URLセクション（存在する場合） -->
+          <% if t.url.present? %>
+            <div class="content-section">
+              <h3>URL</h3>
+              <div class="code-container">
+                <pre><code><%= markdown(t.url) %></code></pre>
+                <button class="copy-button">
+                  <i class="fa-solid fa-copy"></i> コピー
+                </button>
+              </div>
+            </div>
+          <% end %>
 
           <!-- いいねや閲覧数の表示、タグ、リンクなど -->
           <% if user_signed_in? %>
