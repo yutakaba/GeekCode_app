@@ -1,36 +1,63 @@
-<%= form_with(model: @tweet, local: true) do |form| %>
-  <% if @tweet.errors.any? %>
-    <!-- エラー表示のコード -->
-  <% end %>
+<div class="container">
+  <!-- 左側：フォーム -->
+  <div class="form-container">
+    <%= form_with(model: @tweet, local: true) do |form| %>
+      <% if @tweet.errors.any? %>
+        <div class="error-messages">
+          <!-- エラー表示のコード -->
+        </div>
+      <% end %>
 
-  <!-- タイトル入力フィールド -->
-  <div class="field">
-    <%= form.label :title, "タイトル", class: "form-label" %>
-    <%= form.text_field :title, id: "tweet_title", class: "form-input" %>
-  </div>
-
-    <% ['html', 'css', 'js', 'url'].each do |field| %>
-      <div class="input-preview-container"> <!-- 入力とプレビューのペアのコンテナ -->
-        <div class="input-container"> <!-- 入力フィールド用のコンテナ -->
-          <%= form.label field.to_sym, "#{field.upcase} (Markdown)", for: "tweet_#{field}", class: "form-label" %>
+      <!-- 入力フィールド -->
+      <% ['html', 'css', 'js'].each do |field| %>
+        <div class="input-preview-container">
+          <%= form.label field.to_sym, "#{field.upcase}", class: "form-label" %>
           <%= form.text_area field.to_sym, id: "tweet_#{field}", class: "form-input markdown-editor", rows: 10 %>
         </div>
-        <div class="preview-container"> <!-- プレビュー表示用のコンテナ -->
-          <label><%= field.upcase %> プレビュー</label>
-          <div id="preview_<%= field %>" class="markdown-preview"></div>
-        </div>
+      <% end %>
+
+      <!-- 画像投稿フィールド -->
+      <div class="field">
+        <%= form.label :image, "画像アップロード", class: "form-label" %>
+        <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "投稿する", class: "submit-button" %>
+        <%= link_to '戻る', tweets_path, class: 'nav-link' %>
       </div>
     <% end %>
+  </div>
 
-    <!-- 画像投稿フィールド -->
-    <div class="field">
-      <%= form.label :image, "画像アップロード", class: "form-label" %>
-      <%= form.file_field :image, id: "tweet_image", class: "form-input" %>
+  <!-- 右側：チートシートまたはプレビュー -->
+  <div class="content-container">
+    <!-- 切り替えボタン -->
+    <div class="preview-controls">
+      <button type="button" class="control-button" id="togglePreview">チートシート / プレビュー</button>
     </div>
-  </div>
 
-  <div class="actions">
-    <%= form.submit "投稿する", class: "submit-button" %>
-    <%= link_to '戻る', tweets_path, class: 'nav-link' %>
+    <!-- チートシート -->
+    <div id="markdown-cheatsheet" class="markdown-cheatsheet">
+    <h2>Markdown チートシート</h2>
+      <ul>
+        <li><strong>太字</strong>: <code>**太字**</code> or <code>__太字__</code></li>
+        <li><em>斜体</em>: <code>*斜体*</code> or <code>_斜体_</code></li>
+        <li><a href="#">リンク</a>: <code>[テキスト](URL)</code></li>
+        <li>画像: <code>![代替テキスト](URL)</code></li>
+        <li>見出し: <code># 見出し1</code> through <code>###### 見出し6</code></li>
+        <li>リスト: <code>- 項目</code> or <code>* 項目</code> or <code>+ 項目</code></li>
+        <li>番号付きリスト: <code>1. アイテム1</code></li>
+        <li>引用: <code>&gt; 引用文</code></li>
+        <li>インラインコード: <code>`コード`</code></li>
+        <li>コードブロック: <code>```言語</code>コード<code>```</code></li>
+        <li>表: <code>| 表題1 | 表題2 |</code><br><code>| ------ | ------ |</code><br><code>| テキスト  | テキスト  |</code></li>
+      </ul>
+    </div>
+
+    <!-- プレビューエリア（デフォルトで非表示） -->
+    <% ['html', 'css', 'js'].each do |field| %>
+      <div id="preview_<%= field %>" class="field-preview" style="display: none;"></div>
+    <% end %>
   </div>
-<% end %>
+</div>
+

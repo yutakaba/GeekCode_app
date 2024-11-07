@@ -1,42 +1,61 @@
 document.addEventListener("turbolinks:load", function() {
-    // タブのイベントリスナー設定
-    const tabs = document.querySelectorAll(".tablinks");
-    tabs.forEach(tab => {
-      tab.addEventListener("click", function(event) {
-        const codeName = tab.getAttribute('data-code');
-        const tabcontent = document.querySelectorAll(".tabcontent");
-        const tablinks = document.querySelectorAll(".tablinks");
-  
-        // すべてのタブコンテンツを非表示
-        tabcontent.forEach(content => content.style.display = "none");
-  
-        // すべてのタブのアクティブ状態を解除
-        tablinks.forEach(link => link.classList.remove("active"));
-  
-        // クリックされたタブに対応するコンテンツを表示
-        document.getElementById(codeName).style.display = "block";
-  
-        // クリックされたタブをアクティブ状態に
-        tab.classList.add("active");
-      });
+  const toggleButton = document.getElementById('togglePreview');
+  const cheatsheet = document.getElementById('markdown-cheatsheet');
+  const editors = document.querySelectorAll('.markdown-editor');
+
+  // 必要な要素が存在するか確認
+  if (!toggleButton || !cheatsheet) {
+    console.error('必要な要素が見つかりませんでした:', {
+      toggleButton,
+      cheatsheet
     });
-  });
-  
-  function openCode(evt, codeName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(codeName).style.display = "block";
-    evt.currentTarget.className += " active";
+    return;
   }
-  
-  document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.tablinks').forEach(tab => tab.click());
-  });
-  
+
+  // イベントリスナーを設定
+  toggleButton.addEventListener('click', togglePreview);
+
+  // togglePreview関数を定義
+  function togglePreview() {
+    if (typeof marked !== 'function') {
+      console.error('marked.js が読み込まれていないか、marked が関数ではありません。');
+      return;
+    }
+
+    const isCheatsheetVisible = cheatsheet.style.display === 'block' || cheatsheet.style.display === '';
+
+    if (isCheatsheetVisible) {
+      // プレビューを表示
+      cheatsheet.style.display = 'none';
+
+      editors.forEach(editor => {
+        const fieldId = editor.id.replace('tweet_', '');
+        console.log('Processing field:', fieldId);
+        const previewPane = document.getElementById('preview_' + fieldId);
+        console.log('Preview pane:', previewPane);
+
+        if (previewPane) {
+          previewPane.style.display = 'block';
+          // コードブロックとしてテキストをマークダウンに変換
+          const markdownText = '```' + fieldId + '\n' + editor.value + '\n```';
+          console.log('Generated markdownText:', markdownText);
+          previewPane.innerHTML = marked(markdownText);
+        } else {
+          console.error(`プレビューパネルが見つかりません: ${fieldId}`);
+        }
+      });
+    } else {
+      // チートシートを表示
+      cheatsheet.style.display = 'block';
+
+      editors.forEach(editor => {
+        const fieldId = editor.id.replace('tweet_', '');
+        const previewPane = document.getElementById('preview_' + fieldId);
+        if (previewPane) {
+          previewPane.style.display = 'none';
+          previewPane.innerHTML = ''; // プレビュー内容をクリア
+        }
+      });
+    }
+  }
+});

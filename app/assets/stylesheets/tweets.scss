@@ -3,11 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 /* 全体レイアウト */
 /* 全体レイアウト */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+
+  .container {
+    display: flex;
+    height: 80vh; /* 必要に応じて調整 */
   }
   
   .header, .footer {
@@ -23,7 +22,7 @@
   }
   
   /* ナビゲーションリンク */
-  .nav-link, .nav-link-code {
+  .nav-link{
     text-decoration: none;
     color: #4caf50;
     margin-left: 10px;
@@ -31,6 +30,9 @@
     border: 1px solid #4caf50;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
+  }
+  .nav-link-code {
+    color: #ffffff;
   }
   
   .nav-link:hover, .nav-link-code:hover {
@@ -72,11 +74,7 @@
     cursor: pointer;
   }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+ 
   
   .input-preview-container {
     display: flex;
@@ -354,5 +352,68 @@
   background-color: #4caf50; /* ホバー時に背景を緑色に */
   color: #121212; /* ホバー時にテキスト色を暗色に */
 }
+
+/* 左側のフォーム部分 */
+.form-container {
+  flex: 0 0 50%; /* 固定幅：全体の50% */
+  max-width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* 右側のチートシート／プレビュー部分 */
+.content-container {
+  flex: 1; /* 残りのスペースを使用 */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* テキストエリアのスタイル */
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 200px; /* 必要に応じて調整 */
+}
+
+/* チートシートとプレビューのスタイル */
+.markdown-cheatsheet,
+.field-preview {
+  overflow-y: auto;
+  max-height: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* プレビューエリアをデフォルトで非表示 */
+.field-preview {
+  display: none;
+}
+
+/* 切り替えボタンのスタイル */
+.preview-controls {
+  margin-bottom: 10px;
+}
+
+.control-button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .form-container,
+  .content-container {
+    max-width: 100%;
+    flex: none;
+  }
+}
+
 
   

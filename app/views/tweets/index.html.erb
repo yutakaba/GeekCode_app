@@ -132,8 +132,13 @@
             <%= image_tag 'https://via.placeholder.com/250x200?text=No+Image', alt: 'No Image' %>
           <% end %>
 
-          <!-- HTMLセクション -->
-          <div class="content-section">
+           <div class="tab">
+            <button type="button" class="tablinks submit-button" data-code="HTML<%= t.id %>">HTML</button>
+            <button type="button" class="tablinks submit-button" data-code="CSS<%= t.id %>">CSS</button>
+            <button type="button" class="tablinks submit-button" data-code="JavaScript<%= t.id %>">JavaScript</button>
+          </div>
+
+          <div id="HTML<%= t.id %>" class="tabcontent">
             <h3>HTML</h3>
             <div class="code-container">
               <pre><code><%= markdown(t.html) %></code></pre>
@@ -143,8 +148,7 @@
             </div>
           </div>
 
-          <!-- CSSセクション -->
-          <div class="content-section">
+          <div id="CSS<%= t.id %>" class="tabcontent">
             <h3>CSS</h3>
             <div class="code-container">
               <pre><code><%= markdown(t.css) %></code></pre>
@@ -154,8 +158,7 @@
             </div>
           </div>
 
-          <!-- JavaScriptセクション -->
-          <div class="content-section">
+          <div id="JavaScript<%= t.id %>" class="tabcontent">
             <h3>JavaScript</h3>
             <div class="code-container">
               <pre><code><%= markdown(t.js) %></code></pre>
