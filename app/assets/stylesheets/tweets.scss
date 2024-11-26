@@ -8,6 +8,8 @@
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+    
+
   }
   
   .header, .footer {
@@ -358,4 +360,12 @@
   color: #121212; /* ホバー時にテキスト色を暗色に */
 }
 
-  
+.container-new{
+width: 100%;
+display: flex;
+margin-top: 15%;
+}
+
+.content-container{
+  width: 50%;
+}

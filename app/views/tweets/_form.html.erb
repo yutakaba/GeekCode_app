@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-new">
   <!-- 左側：フォーム -->
   <div class="form-container">
     <%= form_with(model: @tweet, local: true) do |form| %>
@@ -31,11 +31,10 @@
 
   <!-- 右側：チートシートまたはプレビュー -->
   <div class="content-container">
-    <!-- 切り替えボタン -->
-    <div class="preview-controls">
-      <button type="button" class="control-button" id="togglePreview">チートシート / プレビュー</button>
-    </div>
-
+      <div class="preview-controls">
+        <button type="button" class="control-button" id="togglePreview">チートシート / プレビュー</button>
+      </div>
+   
     <!-- チートシート -->
     <div id="markdown-cheatsheet" class="markdown-cheatsheet">
     <h2>Markdown チートシート</h2>
