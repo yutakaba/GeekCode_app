@@ -10,8 +10,6 @@ import * as ActiveStorage from "@rails/activestorage";
 import showdown from 'showdown';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css'; 
-import Vue from 'vue'; // Vue.js 2.x のインポート
-import HelloComponent from "./components/HelloComponent.vue"; // Vueコンポーネントのインポート
 import './copy_code';
 import "./tabs"
 
@@ -130,13 +128,5 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// Vue.jsの初期化コード
-document.addEventListener("DOMContentLoaded", () => {
-  const appElement = document.getElementById("app");
-  if (appElement) {
-    new Vue({
-      render: h => h(HelloComponent)
-    }).$mount(appElement);
-  }
-});
+
 
