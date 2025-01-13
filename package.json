@@ -32,7 +32,7 @@
     "webpack-cli": "3.3.12"
   },
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "start": "webpack serve --mode development",
     "prod": "webpack --mode production"
   },
