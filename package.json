@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "engines": {
-    "node": "16.20.2",
-    "npm": "8.19.4"
+    "node": "18.20.4",
+    "npm": "10.7.0"
   },
   "dependencies": {
     "@babel/core": "7.22.9",
@@ -14,9 +14,8 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.3",
     "babel-loader": "8.3.0",
-    "css-loader": "^3.6.0",
+    "esbuild": "^0.24.2",
     "highlight.js": "^11.10.0",
     "markdown-it": "^14.1.0",
     "marked": "3.0.0",
@@ -32,9 +31,8 @@
     "webpack-cli": "3.3.12"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "start": "webpack serve --mode development",
-    "prod": "webpack --mode production"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.ttf=file --loader:.vue=jsx",
+    "start": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --watch"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
