@@ -28,6 +28,7 @@
   },
   "scripts": {
   "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.ttf=file",
+  "build:css": "esbuild app/javascript/stylesheets/*.scss --bundle --sourcemap --loader:.scss=css --outdir=app/assets/builds --public-path=/assets",
   "start": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --watch"
 },
   "devDependencies": {
