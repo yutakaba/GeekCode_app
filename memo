@@ -1,0 +1,72 @@
+
+
+サードパーティ
+serve使うとローカルでfileからサーバー立てられる
+
+なぜ状態をを保持する必要があるのか？
+
+React では、画面上の情報を動的に更新するために「状態（state）」を管理する必要があります。
+searchTerm を useState で保持する理由は、ユーザーの入力に応じて検索結果をリアルタイムに変えるためです。
+「リアルタイム」とは、例えば検索機能の場合ユーザーが検索欄に文字を入力するたびに、即座に結果が変わる ことを指します
+
+Rails (Ruby) の検索
+データの処理,サーバー側（バックエンド） で処理
+
+React (SPA) の検索
+フロントエンド（ブラウザ） で処理
+
+usestateは、リアクトの標準ライブラリーでインポートで呼び出すことができること
+
+.FCと言うのはファンクションコンポーネントの略称で型注釈。
+これから関数コンポーネントを書きますよーって言うことを明示的に示している。
+
+React.FCと書くのは、"リアクトにおける"ファンクションコンポーネントだからと言うことである。
+コンポーネントの種類はfunctionポーネントとclassコンポーネントの2種類がある。
+しかし、クラスコンポーネントの場合を明示的に記載する場合は、React.CCではなくくReact.Componentと記載する。
+
+アロー関数の書き方
+const 関数名 = (引数) => { 処理 }
+しかし、引数が１つだけの場合は省略できる
+
+const [searchTerm, setSearchTerm] = useState("");
+分割代入をしている
+searchTermで現在の検索ワードを保持する状態変数初期値は””
+setSearchTermはsearchTermを更新するための関数（状態更新関数）
+
+.filter() は 配列の各要素をチェックし、条件に合うものだけを新しい配列として返すメソッド です。
+基本構文
+const 新しい配列 = 元の配列.filter((要素) => 条件);
+この要素は開発者が命名するもの
+
+const CocktailList: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredCocktails = cocktailsData.filter(cocktail =>
+    // cocktail.name.includes(searchTerm)
+    cocktail.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+条件の部分cocktail.name.includes(searchTerm)はcocktail.nameでsearchTermつまりユーザーの保持された検索ワードが含まれている場合、ということ
+ cocktail.name.toLowerCase().includes(searchTerm.toLowerCase())とすることで小文字にも対応できる
+  <input
+        type="text"
+        placeholder="カクテル名で検索"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+について
+placeholder="カクテル名で検索"
+placeholderは入力欄の仮の説明テキスト
+value={searchTerm}はsearchTermの値と入力欄を同期
+onChange={(e) => setSearchTerm(e.target.value)} onChangeは値を変更した時に発火。M→ま→まる
+🔹 「入力欄で値が変更されたら (onChange)」を発火
+🔹 「イベント情報 (e) を受け取る」
+🔹 「e.target.value で、入力された最新の値を取得する」
+🔹 「setSearchTerm(e.target.value) で、React の searchTerm の状態を更新する」
+
+ジェネリクスは型を引数として受け取ること
+コンポーネントに指定する型を「後から」指定できる
+先に型がガチガチに指定されているのにジェネリクスを使うのはchildrenが付いてくるから
+
+
+質問
+
+今までレイルズでは、例えば検索機能の場合、検索するというサブミットボタンを押すことで、サーバー側、バックエンドで処理を行っていました。 しかしリアクトでは、それをフロントエンド側で処理することが可能ということで、 初歩的な質問ですが、バックエンド側Goとreactでの挙動はどのように分担をしているのでしょうか。
